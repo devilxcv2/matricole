@@ -1,0 +1,53 @@
+<div id="title">Matricole</div>
+
+<form action="/cerca_matricola" method="POST">
+    <input type="text" name="codice">
+    <input type="submit" value="Cerca matricola">
+  </form>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Quantità</th>
+            <th>Codice</th>
+            <th>Matricola iniziale</th>
+            <th>Matricola finale</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in matricole %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/">Torna alla pagina Principale</a>
+<style>
+    #title {
+                text-align: center;
+                font-size: 36px;
+                font-weight: bold;
+                padding: 20px;
+                } 
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #dddddd;
+    }
+</style>

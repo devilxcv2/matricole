@@ -1,0 +1,139 @@
+<head>
+    <style>
+       #title {
+                text-align: center;
+                font-size: 36px;
+                font-weight: bold;
+                padding: 20px;
+                } 
+
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+  
+      form {
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px #ccc;
+        border-radius: 10px;
+      }
+  
+      label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+      }
+  
+      input[type="text"],
+      input[type="date"] {
+        padding: 10px;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+  
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <div id="title">Inserimento matricole</div>
+
+<form action="/inserisci" method="POST">
+    <label for="quantita">Quantità:</label>
+    <input type="text" id="quantita" name="quantita"><br>
+
+    <label for="codice">Codice:</label>
+    <input type="text" id="codice" name="codice" list="codici_quadri">
+        <datalist id="codici_quadri">
+        {% for row in data_quadri %}
+            <option value="{{ row }}">
+            
+        {% endfor %}
+    </datalist>
+
+
+
+    <br>
+
+    <label for="matr_iniziale">Matricola iniziale:</label>
+    <input type="text" id="matr_iniziale" name="matr_iniziale" value="{{ matr_iniziale }}" oninput="calcola_matr_iniziale(this.value)"><br>
+
+
+
+
+    <label for="matr_finale">Matricola finale:</label>
+    <input type="text" id="matr_finale" name="matr_finale" value="{{ matr_finale }}" oninput="calcola_matr_finale(this.value)"><br>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data" value="{{ current_date }}">
+
+
+
+
+    <input type="submit" value="inserisci">
+    
+
+    
+</form>
+
+<form action="/matricole" method="GET">
+    <input type="submit" value="Visualizza matricole">
+</form>
+<form action="/quadri" method="GET">
+    <input type="submit" value="Visualizza quadri">
+</form>
+
+<form action="/inserisci_quadro" method="POST">
+  <input type="text" name="codice">
+  <input type="submit" value="Inserisci quadro">
+</form>
+<form action="/modifica" method="GET">
+  <input type="submit" value="Modifica Matricole">
+
+
+<</form>
+<form action="/esporta_csv" method="POST">
+  <button onclick="esporta_csv()">Esporta CSV</button>
+</form>
+  <script>
+  
+    var current_date = new Date().toISOString().substring(0, 10);
+    document.getElementById("data").value = current_date;
+
+    function esporta_csv() {
+   // Codice per esportare il database
+
+   // Mostra una finestra di dialogo per indicare il successo dell'esportazione
+   alert("Il database è stato esportato con successo!");
+}
+    function calcola_matr_finale(matr_iniziale) {
+        var quantita = document.getElementById("quantita").value;
+        var matr_finale = document.getElementById("matr_finale");
+
+        matr_finale.value = parseInt(quantita) + parseInt(matr_iniziale);
+    }
+    function calcola_matr_iniziale(matr_finale) {
+        var quantita = document.getElementById("quantita").value;
+        var matr_iniziale = document.getElementById("matr_iniziale");
+
+        matr_iniziale.value = parseInt(matr_finale) - parseInt(quantita);
+    }
+</script>
+
+</body>
+</html>

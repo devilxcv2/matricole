@@ -1,0 +1,51 @@
+<form action="/inserisci" method="POST">
+    <label for="quantita">Quantità:</label>
+    <input type="text" id="quantita" name="quantita"><br>
+
+    <label for="codice">Codice:</label>
+    <input type="text" id="codice" name="codice" list="codici_quadri">
+        <datalist id="codici_quadri">
+        {% for row in data_quadri %}
+            <option value="{{ row }}>
+            
+        {% endfor %}
+    </datalist>
+
+
+
+    <br>
+
+    <label for="matr_iniziale">Matricola iniziale:</label>
+    <input type="text" id="matr_iniziale" name="matr_iniziale" value="{{ matr_iniziale }}" readonly><br>
+
+
+    <label for="matr_finale">Matricola finale:</label>
+    <input type="text" id="matr_finale" name="matr_finale"><br>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data"><br>
+
+    <input type="submit" value="inserisci">
+    
+
+    
+</form>
+
+<form action="/matricole" method="GET">
+    <input type="submit" value="Visualizza matricole">
+</form>
+
+<script>
+    function calcola_matr_finale(matr_iniziale) {
+        var quantita = document.getElementById("quantita").value;
+        var matr_finale = document.getElementById("matr_finale");
+
+        matr_finale.value = parseInt(quantita) + parseInt(matr_iniziale);
+    }
+</script>
+</form>
+<form action="/matricole" method="GET">
+    <input type="submit" value="Visualizza matricole">
+</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Modifica Record</title>
+  </head>
+  <body>
+    <h1>Modifica Record</h1>
+    {% for row in dati %}
+    <form action="{{url_for('modifica')}}" method="post">
+        <h3>{{ row[0] }}</h3>
+        <p>Quantità: <input type="text" name="quantita" value="{{ row[1] }}"></p>
+        <p>Codice: <input type="text" name="codice" value="{{ row[2] }}"></p>
+        <p>Matricola Iniziale: <input type="text" name="matr_iniziale" value="{{ row[3] }}"></p>
+        <p>Matricola Finale: <input type="text" name="matr_finale" value="{{ row[4] }}"></p>
+        <p>Data: <input type="text" name="data" value="{{ row[5] }}"></p>
+        <input type="submit" value="Modifica">
+        <hr>
+    </form>
+    {% endfor %}
+  </body>
+</html>
+
