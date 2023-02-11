@@ -3,4 +3,4 @@ database flask
 per gestire matricole
 
 
-pi install flask
+pip install flask
